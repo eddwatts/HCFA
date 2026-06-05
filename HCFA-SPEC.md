@@ -4,7 +4,7 @@
 **Status:** Draft  
 **Author:** Open Infrastructure Systems Architect  
 **Date:** June 2026  
-**Repository:** https://github.com/[your-handle]/hcfa-spec  
+**Repository:** https://github.com/eddwatts/HCFA  
 **Related:** [OCFA — Open Consumer Fiber Architecture](./OCFA-SPEC.md)
 
 ---

@@ -5,7 +5,7 @@
 > Fiber data and PoE power in a single run, using components already on your shelf
 
 **Series:** Hybrid Copper-Fiber Architecture · June 2026  
-**Related:** [OCFA — Open Consumer Fiber Architecture](https://github.com/[your-handle]/ocfa-spec)
+**Related:** [OCFA — Open Consumer Fiber Architecture](https://github.com/eddwatts/OCFA)
 
 ---
 
@@ -13,7 +13,7 @@ If you are already running separate fiber and copper to high-speed access points
 
 **HCFA — the Hybrid Copper-Fiber Architecture** — takes the approach experienced network engineers already use for high-speed AP and remote switch installations, names it, standardises the port layout and cable construction, and specifies the power delivery and resilience behaviour clearly enough that any manufacturer can build to it and any installer can deploy it. The standards it uses are unchanged. The components are the same ones already on the shelf. The only thing that changes is that it becomes a defined, repeatable process rather than something each engineer figures out independently.
 
-It builds on [OCFA](https://github.com/[your-handle]/ocfa-spec), inheriting its BiDi port and wavelength convention. The short version: OCFA standardises 10G BiDi fiber edge connections with factory-fixed polarity so the TX/RX error is physically impossible. HCFA applies that port standard to getting fiber data and PoE power to ceiling devices and remote switch cabinets in a single cable run.
+It builds on [OCFA](https://github.com/eddwatts/OCFA), inheriting its BiDi port and wavelength convention. The short version: OCFA standardises 10G BiDi fiber edge connections with factory-fixed polarity so the TX/RX error is physically impossible. HCFA applies that port standard to getting fiber data and PoE power to ceiling devices and remote switch cabinets in a single cable run.
 
 > **Existing infrastructure:** if you already have separate fiber and copper runs to ceiling APs or remote cabinets, both cables plug directly into the HCFA hybrid edge port — fiber into the LC socket, copper into the RJ45. No rewiring needed. The composite cable is the better option for new runs only.
 
