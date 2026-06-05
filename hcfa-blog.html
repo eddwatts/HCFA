@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HCFA — One Cable to the Ceiling</title>
+    <style>
+        :root {
+            --bg-color: #0f172a; --card-bg: #1e293b; --text-main: #f8fafc;
+            --text-muted: #94a3b8; --accent-blue: #38bdf8; --accent-green: #4ade80;
+            --accent-amber: #fbbf24; --accent-red: #f87171; --border-color: #334155;
+        }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: var(--bg-color); color: var(--text-main); line-height: 1.7; margin: 0; padding: 0; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        header { border-bottom: 1px solid var(--border-color); padding-bottom: 20px; margin-bottom: 40px; }
+        h1 { color: var(--text-main); font-size: 2.5rem; margin-bottom: 10px; line-height: 1.2; }
+        .subtitle { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 20px; }
+        .meta { color: var(--text-muted); font-size: 0.95rem; }
+        .meta span { color: var(--accent-blue); font-weight: bold; }
+        .related-link { display: inline-block; margin-top: 12px; padding: 6px 14px; background: var(--card-bg); border: 1px solid var(--accent-blue); border-radius: 6px; color: var(--accent-blue); text-decoration: none; font-size: 0.9rem; }
+        .related-link:hover { background: var(--accent-blue); color: var(--bg-color); }
+        h2 { color: var(--accent-blue); font-size: 1.8rem; margin-top: 50px; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; }
+        h3 { color: var(--text-main); font-size: 1.2rem; margin-top: 28px; }
+        p { color: var(--text-main); opacity: 0.9; margin-bottom: 1em; }
+        strong { color: var(--text-main); opacity: 1; }
+        ul { padding-left: 22px; }
+        li { margin-bottom: 10px; opacity: 0.9; }
+        .diagram-container { background-color: #0b0f19; border: 1px solid var(--border-color); border-radius: 8px; padding: 24px 20px; margin: 28px 0; display: flex; justify-content: center; align-items: center; flex-direction: column; }
+        .diagram-label { color: var(--text-muted); font-size: 0.85rem; margin-top: 12px; text-align: center; }
+        svg { max-width: 100%; height: auto; }
+        .callout { background: var(--card-bg); border-left: 4px solid var(--accent-green); border-radius: 0 8px 8px 0; padding: 16px 20px; margin: 24px 0; }
+        .callout p { margin: 0; opacity: 1; }
+        .callout-blue { border-left-color: var(--accent-blue); }
+        .callout-amber { border-left-color: var(--accent-amber); }
+        table { width: 100%; border-collapse: collapse; margin: 25px 0; background-color: var(--card-bg); border-radius: 8px; overflow: hidden; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid var(--border-color); }
+        th { background-color: #111827; color: var(--accent-blue); }
+        .footer-links { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--border-color); display: flex; gap: 16px; flex-wrap: wrap; }
+        .post-footer { color: var(--text-muted); font-size: 0.85rem; margin-top: 50px; padding-top: 20px; border-top: 1px solid var(--border-color); }
+        .summary-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin: 28px 0; }
+        .summary-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 16px; }
+        .summary-card h4 { color: var(--accent-blue); margin: 0 0 10px 0; font-size: 0.95rem; }
+        .summary-card p { margin: 0; font-size: 0.9rem; opacity: 0.8; }
+        @media (max-width: 600px) { .summary-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>One Cable to the Ceiling</h1>
+        <p class="subtitle">The Hybrid Copper-Fiber Architecture — fiber data and PoE power in a single run, using components already on your shelf</p>
+        <div class="meta">
+            <strong>Series:</strong> Hybrid Copper-Fiber Architecture &bull; <span>June 2026</span>
+        </div>
+        <a href="ocfa-blog.html" class="related-link">&larr; Related: OCFA — The Technology Is Already There</a>
+    </header>
+
+    <section>
+        <p>If you are already running separate fiber and copper to high-speed access points, or deploying BiDi SFP+ connections in your infrastructure — <strong>you are already doing most of what this spec describes.</strong></p>
+        <p><strong>HCFA — the Hybrid Copper-Fiber Architecture</strong> — takes the approach experienced network engineers already use for high-speed AP and remote switch installations, names it, standardises the port layout and cable construction, and specifies the power delivery and resilience behaviour clearly enough that any manufacturer can build to it and any installer can deploy it. The standards it uses are unchanged. The components are the same ones already on the shelf. The only thing that changes is that it becomes a defined, repeatable process rather than something each engineer figures out independently.</p>
+        <p>It builds on <a href="ocfa-blog.html" style="color: var(--accent-blue);">OCFA</a>, inheriting its BiDi port and wavelength convention. The short version: OCFA standardises 10G BiDi fiber edge connections with factory-fixed polarity so the TX/RX error is physically impossible. HCFA applies that port standard to getting fiber data and PoE power to ceiling devices and remote switch cabinets in a single cable run.</p>
+        <div class="callout callout-blue">
+            <p><strong>Existing infrastructure:</strong> if you already have separate fiber and copper runs to ceiling APs or remote cabinets, both cables plug directly into the HCFA hybrid edge port — fiber into the LC socket, copper into the RJ45. No rewiring needed. The composite cable is the better option for new runs only.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>The Problem: Two Cables Where One Should Do</h2>
+        <p>Most Wi-Fi access points still run on a single copper cable — Cat5e or Cat6 carrying both data and PoE power, and that works fine. But high-speed APs are hitting the ceiling of what copper can deliver at real building distances, which is why the top-end units from Ubiquiti and others now ship with an SFP+ port alongside the RJ45 — fiber for data, copper for power.</p>
+        <p>If you've deployed one of those, you've done this: pulled two cables. Two conduit entries, two terminations, two patch leads at the switch end — and a field-insertable SFP+ transceiver that adds cost and a polarity problem to every installation. It works, but it's double the labour and double the things that can go wrong.</p>
+        <p>HCFA replaces that for new runs while remaining fully compatible with every two-cable installation already in place.</p>
+    </section>
+
+    <section>
+        <h2>The Hybrid Edge Port</h2>
+        <p>The core of HCFA is a switch port with two sockets on the same faceplate: an LC optical socket on top (OCFA Port-A — TX 1310nm / RX 1550nm, fixed BiDi optics) and an RJ45 socket on the bottom (PoE, at least PoE++ rated per port independently — not shared across the switch).</p>
+        <p>That per-port requirement matters. Many PoE switches have a total power budget spread across all ports. HCFA requires that every port can deliver its full rated wattage simultaneously — so a 16-port switch can run 16 cameras at full power without anything getting throttled.</p>
+
+        <div class="diagram-container">
+            <svg width="500" height="240" viewBox="0 0 500 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="150" y="20" width="200" height="180" rx="10" fill="#1E293B" stroke="#334155" stroke-width="3"/>
+                <text x="250" y="14" fill="#94A3B8" font-size="11" font-weight="bold" text-anchor="middle">HYBRID EDGE PORT — SINGLE FACEPLATE</text>
+                <rect x="170" y="35" width="160" height="70" rx="5" fill="#0F172A" stroke="#38BDF8" stroke-width="2"/>
+                <text x="250" y="56" fill="#38BDF8" font-size="10" font-weight="bold" text-anchor="middle">UPPER: LC OPTICAL</text>
+                <circle cx="250" cy="80" r="12" fill="#0F172A" stroke="#38BDF8" stroke-width="2"/>
+                <circle cx="250" cy="80" r="5" fill="#38BDF8"/>
+                <circle cx="250" cy="80" r="2" fill="#F8FAFC"/>
+                <text x="250" y="100" fill="#94A3B8" font-size="9" text-anchor="middle">Port-A (TX1310/RX1550) · 10G BiDi · Fixed optics</text>
+                <line x1="150" y1="118" x2="350" y2="118" stroke="#475569" stroke-width="3"/>
+                <rect x="170" y="125" width="160" height="60" rx="5" fill="#0F172A" stroke="#FBBF24" stroke-width="2"/>
+                <text x="250" y="143" fill="#FBBF24" font-size="10" font-weight="bold" text-anchor="middle">LOWER: RJ45 PoE</text>
+                <rect x="195" y="150" width="110" height="18" rx="2" fill="#334155"/>
+                <line x1="205" y1="150" x2="205" y2="168" stroke="#FBBF24" stroke-width="1.5"/>
+                <line x1="216" y1="150" x2="216" y2="168" stroke="#FBBF24" stroke-width="1.5"/>
+                <line x1="227" y1="150" x2="227" y2="168" stroke="#FBBF24" stroke-width="1.5"/>
+                <line x1="238" y1="150" x2="238" y2="168" stroke="#FBBF24" stroke-width="1.5"/>
+                <line x1="249" y1="150" x2="249" y2="168" stroke="#FBBF24" stroke-width="1.5"/>
+                <line x1="260" y1="150" x2="260" y2="168" stroke="#FBBF24" stroke-width="1.5"/>
+                <line x1="271" y1="150" x2="271" y2="168" stroke="#FBBF24" stroke-width="1.5"/>
+                <line x1="282" y1="150" x2="282" y2="168" stroke="#FBBF24" stroke-width="1.5"/>
+                <text x="250" y="202" fill="#94A3B8" font-size="9" text-anchor="middle">PoE++ per port independently · 1G management</text>
+                <text x="362" y="78" fill="#38BDF8" font-size="11">10G data</text>
+                <text x="362" y="155" fill="#FBBF24" font-size="11">Power + mgmt</text>
+                <line x1="330" y1="80" x2="358" y2="80" stroke="#38BDF8" stroke-width="1" stroke-dasharray="3 2"/>
+                <line x1="330" y1="155" x2="358" y2="155" stroke="#FBBF24" stroke-width="1" stroke-dasharray="3 2"/>
+            </svg>
+            <p class="diagram-label">Two standard off-the-shelf connectors on one faceplate. Presented as a single logical port in the management interface.</p>
+        </div>
+
+        <p>The optical port carries 10G data. The copper port carries power and a 1G management link on a dedicated VLAN — always separate from user data, always reachable. The switch presents both as a single logical port — no separate configuration required.</p>
+    </section>
+
+    <section>
+        <h2>Two Cables or One — Existing Infrastructure Just Plugs In</h2>
+        <p>If a building already has separate fiber and copper runs to the ceiling, both cables plug into the hybrid edge port as they are. The composite cable is purely an improvement for new runs.</p>
+
+        <div class="diagram-container">
+            <svg width="720" height="210" viewBox="0 0 720 210" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="175" y="20" fill="#94A3B8" font-size="12" font-weight="bold" text-anchor="middle">EXISTING INSTALLATION</text>
+                <text x="175" y="36" fill="#94A3B8" font-size="10" text-anchor="middle">Two separate cables — plug straight in</text>
+                <rect x="20" y="50" width="80" height="130" rx="5" fill="#1E293B" stroke="#334155" stroke-width="2"/>
+                <rect x="30" y="62" width="60" height="40" rx="3" fill="#0F172A" stroke="#38BDF8"/>
+                <text x="60" y="86" fill="#38BDF8" font-size="9" text-anchor="middle">A (TX1310)</text>
+                <rect x="30" y="115" width="60" height="35" rx="3" fill="#0F172A" stroke="#FBBF24"/>
+                <text x="60" y="136" fill="#FBBF24" font-size="9" text-anchor="middle">RJ45 PoE</text>
+                <path d="M100 82 C 160 82 160 82 220 82" stroke="#38BDF8" stroke-width="3"/>
+                <path d="M100 132 C 160 132 160 132 220 132" stroke="#FBBF24" stroke-width="3"/>
+                <text x="160" y="75" fill="#38BDF8" font-size="9" text-anchor="middle">Existing fiber</text>
+                <text x="160" y="148" fill="#FBBF24" font-size="9" text-anchor="middle">Existing copper</text>
+                <rect x="220" y="55" width="90" height="120" rx="5" fill="#1E293B" stroke="#4ADE80" stroke-width="2"/>
+                <text x="265" y="100" fill="#4ADE80" font-size="10" font-weight="bold" text-anchor="middle">ACCESS</text>
+                <text x="265" y="115" fill="#4ADE80" font-size="10" font-weight="bold" text-anchor="middle">POINT</text>
+                <text x="265" y="150" fill="#94A3B8" font-size="9" text-anchor="middle">B (TX1550) optics</text>
+                <text x="265" y="170" fill="#4ADE80" font-size="10" font-weight="bold" text-anchor="middle">&#x2713; Works</text>
+                <line x1="370" y1="10" x2="370" y2="200" stroke="#334155" stroke-width="1" stroke-dasharray="4 3"/>
+                <text x="545" y="20" fill="#94A3B8" font-size="12" font-weight="bold" text-anchor="middle">NEW INSTALLATION</text>
+                <text x="545" y="36" fill="#94A3B8" font-size="10" text-anchor="middle">One composite cable — single pull</text>
+                <rect x="390" y="50" width="80" height="130" rx="5" fill="#1E293B" stroke="#334155" stroke-width="2"/>
+                <rect x="400" y="62" width="60" height="40" rx="3" fill="#0F172A" stroke="#38BDF8"/>
+                <text x="430" y="86" fill="#38BDF8" font-size="9" text-anchor="middle">A (TX1310)</text>
+                <rect x="400" y="115" width="60" height="35" rx="3" fill="#0F172A" stroke="#FBBF24"/>
+                <text x="430" y="136" fill="#FBBF24" font-size="9" text-anchor="middle">RJ45 PoE</text>
+                <path d="M470 107 C 530 107 530 107 590 107" stroke="#94A3B8" stroke-width="8" stroke-linecap="round"/>
+                <path d="M470 107 C 530 107 530 107 590 107" stroke="#38BDF8" stroke-width="2"/>
+                <text x="530" y="98" fill="#F8FAFC" font-size="9" text-anchor="middle">Cat6+fiber</text>
+                <text x="530" y="122" fill="#94A3B8" font-size="9" text-anchor="middle">single jacket</text>
+                <rect x="590" y="55" width="90" height="120" rx="5" fill="#1E293B" stroke="#4ADE80" stroke-width="2"/>
+                <text x="635" y="100" fill="#4ADE80" font-size="10" font-weight="bold" text-anchor="middle">ACCESS</text>
+                <text x="635" y="115" fill="#4ADE80" font-size="10" font-weight="bold" text-anchor="middle">POINT</text>
+                <text x="635" y="150" fill="#94A3B8" font-size="9" text-anchor="middle">B (TX1550) optics</text>
+                <text x="635" y="170" fill="#4ADE80" font-size="10" font-weight="bold" text-anchor="middle">&#x2713; Works</text>
+            </svg>
+            <p class="diagram-label">Existing two-cable installations connect directly — no changes. New runs use a single composite cable: same result, half the conduit entries.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>The Composite Cable</h2>
+        <p>For new installations, HCFA defines a <strong>Cat6+fiber composite cable</strong>: standard Cat6 construction with a single fiber strand, available in three construction approaches:</p>
+        <ul>
+            <li><strong>Option A — fiber strand added inside standard jacket.</strong> Minimal size increase. Standard boot manages the fiber exit at termination.</li>
+            <li><strong>Option B — buffered fiber inside jacket.</strong> Around 110% of standard Cat6 diameter. Easier field termination, better for general installers.</li>
+            <li><strong>Option C — fiber replaces the Cat6 central spline.</strong> Standard Cat6 has a central cross-filler whose only job is to keep the pairs separated — no signal, no electrical function. A 250-micron coated fiber occupies that position instead. The pairs wrap around it as normal. The cable is <strong>identical in diameter to standard Cat6</strong>, the fiber is fully protected throughout the run, and at termination it emerges from the centre naturally ready for LC termination. This is the recommended construction.</li>
+        </ul>
+        <p>At each end: fiber to LC connector, copper pairs to RJ45. Standard wall plates, standard keystones, standard patch panels.</p>
+
+        <h3>Getting Hold of the Cable</h3>
+        <p><strong>Pre-terminated lengths</strong> up to <strong>100 m</strong> — factory-fitted boots, LC connectors, and RJ45 at both ends. No optical tooling required. 100 m covers the vast majority of AP and remote switch runs.</p>
+        <p><strong>Drum cable</strong> with boots supplied separately for installers with fiber termination equipment. Standard RJ45 crimping for copper, standard LC termination or fusion splice for fiber. Nothing proprietary.</p>
+        <div class="callout callout-amber">
+            <p>A fusion splicer costs upwards of £1,000. Pre-terminated to 100 m removes that barrier — the job becomes cable routing, nothing more.</p>
+        </div>
+        <p>The copper element runs at <strong>1 Gbps by default</strong> — reliable at full Cat6 distance. PoE standard is open: HCFA doesn't fix a specific IEEE revision, so higher-wattage future standards are accommodated without a spec change.</p>
+    </section>
+
+    <section>
+        <h2>Remote Switches and APs — Same Ports, Mixed on One Switch</h2>
+        <p>From the core switch's perspective, a hybrid port serving an AP and one serving a remote switch are identical — both are Port-A (TX1310/RX1550) connecting to a Port-B (TX1550/RX1310) device. The remote switch's own uplink port mirrors the core hybrid port: Port-B (TX1550/RX1310) optical socket plus RJ45 PoE input. Blue bezel on the core, green bezel on the remote switch uplink — one glance confirms correct wiring.</p>
+        <p>A single core HCFA switch can serve APs, remote switches, and direct-connected devices simultaneously with no special configuration. Swapping an AP for a remote switch on any port is a physical reconnection — only the PoE budget needs checking, since a remote switch powering multiple cameras draws significantly more than a single AP.</p>
+    </section>
+
+    <section>
+        <h2>Remote Switches: Powered by the Cable, Scales When Needed</h2>
+        <p>A single composite cable run doesn't just carry data — the copper element carries enough PoE to power the remote switch and its connected cameras. How much depends on whether a local PSU is added.</p>
+
+        <div class="diagram-container">
+            <svg width="720" height="230" viewBox="0 0 720 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="180" y="18" fill="#94A3B8" font-size="12" font-weight="bold" text-anchor="middle">POE-ONLY MODE</text>
+                <text x="180" y="33" fill="#94A3B8" font-size="10" text-anchor="middle">Single cable · No local PSU</text>
+                <rect x="20" y="50" width="320" height="24" rx="4" fill="#334155"/>
+                <rect x="20" y="50" width="48" height="24" rx="4" fill="#F87171"/>
+                <rect x="68" y="50" width="272" height="24" rx="4" fill="#4ADE80" opacity="0.7"/>
+                <text x="44" y="67" fill="#F8FAFC" font-size="9" font-weight="bold" text-anchor="middle">~13W</text>
+                <text x="204" y="67" fill="#F8FAFC" font-size="10" font-weight="bold" text-anchor="middle">~77W available for cameras</text>
+                <text x="20" y="90" fill="#F87171" font-size="9">Switch overhead</text>
+                <text x="130" y="90" fill="#4ADE80" font-size="9">Camera budget (4–11W each)</text>
+                <rect x="20" y="105" width="50" height="40" rx="4" fill="#1E293B" stroke="#4ADE80" stroke-width="1.5"/>
+                <text x="45" y="130" fill="#4ADE80" font-size="9" text-anchor="middle">CAM</text>
+                <rect x="80" y="105" width="50" height="40" rx="4" fill="#1E293B" stroke="#4ADE80" stroke-width="1.5"/>
+                <text x="105" y="130" fill="#4ADE80" font-size="9" text-anchor="middle">CAM</text>
+                <rect x="140" y="105" width="50" height="40" rx="4" fill="#1E293B" stroke="#4ADE80" stroke-width="1.5"/>
+                <text x="165" y="130" fill="#4ADE80" font-size="9" text-anchor="middle">CAM</text>
+                <rect x="200" y="105" width="50" height="40" rx="4" fill="#1E293B" stroke="#4ADE80" stroke-width="1.5"/>
+                <text x="225" y="130" fill="#4ADE80" font-size="9" text-anchor="middle">CAM</text>
+                <text x="275" y="128" fill="#94A3B8" font-size="18">···</text>
+                <text x="180" y="175" fill="#94A3B8" font-size="10" text-anchor="middle">Fixed cameras ✓ · PTZ cameras need PSU</text>
+                <line x1="370" y1="10" x2="370" y2="220" stroke="#334155" stroke-width="1" stroke-dasharray="4 3"/>
+                <text x="545" y="18" fill="#94A3B8" font-size="12" font-weight="bold" text-anchor="middle">EXTERNAL PSU MODE</text>
+                <text x="545" y="33" fill="#94A3B8" font-size="10" text-anchor="middle">PSU plugged in · Full PoE++ per port</text>
+                <rect x="390" y="45" width="90" height="35" rx="4" fill="#1E293B" stroke="#FBBF24" stroke-width="2"/>
+                <text x="435" y="60" fill="#FBBF24" font-size="10" font-weight="bold" text-anchor="middle">EXT PSU</text>
+                <text x="435" y="74" fill="#94A3B8" font-size="9" text-anchor="middle">plugged in</text>
+                <rect x="390" y="50" width="320" height="24" rx="4" fill="#38BDF8" opacity="0.8"/>
+                <text x="550" y="67" fill="#0F172A" font-size="10" font-weight="bold" text-anchor="middle">Full PoE++ per port independently</text>
+                <rect x="390" y="105" width="50" height="40" rx="4" fill="#1E293B" stroke="#4ADE80" stroke-width="1.5"/>
+                <text x="415" y="130" fill="#4ADE80" font-size="9" text-anchor="middle">CAM</text>
+                <rect x="450" y="105" width="50" height="40" rx="4" fill="#1E293B" stroke="#4ADE80" stroke-width="1.5"/>
+                <text x="475" y="130" fill="#4ADE80" font-size="9" text-anchor="middle">CAM</text>
+                <rect x="510" y="100" width="55" height="50" rx="4" fill="#1E293B" stroke="#FBBF24" stroke-width="2"/>
+                <text x="537" y="122" fill="#FBBF24" font-size="9" font-weight="bold" text-anchor="middle">PTZ</text>
+                <text x="537" y="136" fill="#FBBF24" font-size="8" text-anchor="middle">25W</text>
+                <rect x="575" y="100" width="55" height="50" rx="4" fill="#1E293B" stroke="#FBBF24" stroke-width="2"/>
+                <text x="602" y="122" fill="#FBBF24" font-size="9" font-weight="bold" text-anchor="middle">PTZ</text>
+                <text x="602" y="136" fill="#FBBF24" font-size="8" text-anchor="middle">25W</text>
+                <text x="550" y="175" fill="#94A3B8" font-size="10" text-anchor="middle">Fixed + PTZ cameras all supported ✓</text>
+                <text x="550" y="200" fill="#94A3B8" font-size="10" text-anchor="middle">Chassis LED shows active power mode</text>
+                <circle cx="490" cy="196" r="5" fill="#FBBF24"/>
+            </svg>
+            <p class="diagram-label">At 90W incoming, ~77W feeds cameras after switch overhead. Add a local PSU and every port unlocks full PoE++ independently — PTZ fully supported.</p>
+        </div>
+
+        <p>Connecting the external PSU while the switch is running upgrades power gracefully — no ports drop, no resets. A physical LED on the chassis shows the active mode without needing to log in.</p>
+    </section>
+
+    <section>
+        <h2>Fiber Fault Resilience</h2>
+        <p>The copper element keeps the remote switch reachable if the fiber goes down — automatically, with no intervention required.</p>
+
+        <div class="diagram-container">
+            <svg width="720" height="200" viewBox="0 0 720 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <text x="180" y="18" fill="#4ADE80" font-size="12" font-weight="bold" text-anchor="middle">NORMAL OPERATION</text>
+                <rect x="20" y="30" width="100" height="60" rx="5" fill="#1E293B" stroke="#334155"/>
+                <text x="70" y="55" fill="#F8FAFC" font-size="10" font-weight="bold" text-anchor="middle">CORE</text>
+                <text x="70" y="70" fill="#F8FAFC" font-size="10" font-weight="bold" text-anchor="middle">SWITCH</text>
+                <path d="M120 48 H 240" stroke="#38BDF8" stroke-width="3"/>
+                <text x="180" y="43" fill="#38BDF8" font-size="9" text-anchor="middle">10G fiber — all traffic</text>
+                <path d="M120 72 H 240" stroke="#FBBF24" stroke-width="2" stroke-dasharray="4 2"/>
+                <text x="180" y="85" fill="#FBBF24" font-size="9" text-anchor="middle">copper — power + mgmt VLAN</text>
+                <rect x="240" y="30" width="110" height="60" rx="5" fill="#1E293B" stroke="#4ADE80" stroke-width="2"/>
+                <text x="295" y="55" fill="#4ADE80" font-size="10" font-weight="bold" text-anchor="middle">REMOTE</text>
+                <text x="295" y="70" fill="#4ADE80" font-size="10" font-weight="bold" text-anchor="middle">SWITCH</text>
+                <text x="180" y="115" fill="#4ADE80" font-size="10" text-anchor="middle">&#x2713; Full 10G · Cameras streaming · All ports live</text>
+                <line x1="370" y1="10" x2="370" y2="190" stroke="#334155" stroke-width="1" stroke-dasharray="4 3"/>
+                <text x="545" y="18" fill="#FBBF24" font-size="12" font-weight="bold" text-anchor="middle">FIBER FAULT — AUTO FAILOVER</text>
+                <rect x="390" y="30" width="100" height="60" rx="5" fill="#1E293B" stroke="#334155"/>
+                <text x="440" y="55" fill="#F8FAFC" font-size="10" font-weight="bold" text-anchor="middle">CORE</text>
+                <text x="440" y="70" fill="#F8FAFC" font-size="10" font-weight="bold" text-anchor="middle">SWITCH</text>
+                <path d="M490 48 H 560" stroke="#F87171" stroke-width="2" stroke-dasharray="3 3"/>
+                <text x="525" y="40" fill="#F87171" font-size="9" text-anchor="middle">fiber — DOWN</text>
+                <circle cx="545" cy="48" r="9" fill="#0F172A" stroke="#F87171" stroke-width="2"/>
+                <text x="545" y="53" fill="#F87171" font-size="12" font-weight="bold" text-anchor="middle">&#x2715;</text>
+                <path d="M490 72 H 610" stroke="#FBBF24" stroke-width="3"/>
+                <text x="550" y="86" fill="#FBBF24" font-size="9" text-anchor="middle">copper — 1G fallback + power</text>
+                <rect x="610" y="30" width="100" height="60" rx="5" fill="#1E293B" stroke="#FBBF24" stroke-width="2"/>
+                <text x="660" y="55" fill="#FBBF24" font-size="10" font-weight="bold" text-anchor="middle">REMOTE</text>
+                <text x="660" y="70" fill="#FBBF24" font-size="10" font-weight="bold" text-anchor="middle">SWITCH</text>
+                <text x="545" y="115" fill="#FBBF24" font-size="10" text-anchor="middle">Switch powered · Cameras recording · Management reachable</text>
+                <text x="545" y="133" fill="#94A3B8" font-size="10" text-anchor="middle">Restores automatically when fiber recovers · No manual intervention</text>
+            </svg>
+            <p class="diagram-label">Fiber fault activates copper-only mode automatically. Remote switch stays powered and reachable — no site visit needed.</p>
+        </div>
+    </section>
+
+    <section>
+        <h2>Reading a Switch at a Glance — Port Colour Coding</h2>
+        <p>Consistent port bezel colouring makes port roles identifiable without reading labels. Optional but strongly recommended for all OCFA and HCFA optical ports on switch hardware. Does not apply to laptop NICs or adapters.</p>
+        <ul>
+            <li><strong style="color: #38bdf8;">Blue</strong> — Port-A (TX1310/RX1550). Downlink — APs, remote switches, direct device connections.</li>
+            <li><strong style="color: #4ade80;">Green</strong> — Port-B (TX1550/RX1310). Uplink — connects this switch upstream.</li>
+            <li><strong style="color: #fbbf24;">Amber</strong> — SFP+ cage. Long-haul or high-speed infrastructure uplink.</li>
+            <li><strong style="color: #e2e8f0;">White / Light grey</strong> — RJ45 PoE socket on hybrid ports.</li>
+        </ul>
+        <p>Plastic bezel colouring is a pigment in the injection mould — zero additional cost at scale.</p>
+    </section>
+
+    <section>
+        <h2>Management: No New Protocols Needed</h2>
+        <p>The copper sub-interface is a standard 1G Ethernet link on a management VLAN. It looks identical to any other management port to the software layer. UniFi's adoption protocol works over it. LLDP works over it. MikroTik's discovery works over it. SNMP works over it.</p>
+        <p>A UniFi deployment stays a UniFi deployment. A MikroTik network stays a MikroTik network. HCFA adds the physical port and cable architecture — it doesn't touch the management stack.</p>
+    </section>
+
+    <section>
+        <h2>Summary</h2>
+        <div class="summary-grid">
+            <div class="summary-card">
+                <h4>Existing buildings</h4>
+                <p>Separate fiber and copper already in place? Both plug into the hybrid port. 10G data and resilient management immediately. Zero rewiring.</p>
+            </div>
+            <div class="summary-card">
+                <h4>New runs</h4>
+                <p>One cable pull, one conduit entry, one termination. 10G optical data + PoE++ power + automatic failover to copper management on fiber fault.</p>
+            </div>
+            <div class="summary-card">
+                <h4>Remote switches</h4>
+                <p>10G uplink, switch powered by the cable, cameras powered by the switch. Manageable remotely even when fiber is down. PTZ support with a local PSU.</p>
+            </div>
+        </div>
+        <p>All using LC connectors and Cat6 that any installer already knows, managed by tools already in use, with a PoE standard that will keep improving without requiring a spec revision.</p>
+    </section>
+
+    <div class="footer-links">
+        <a href="ocfa-blog.html" class="related-link">&larr; OCFA — The Technology Is Already There</a>
+        <a href="HCFA-SPEC.md" class="related-link">HCFA Specification (Draft 0.1) &rarr;</a>
+        <a href="OCFA-SPEC.md" class="related-link">OCFA Specification (Draft 0.1) &rarr;</a>
+    </div>
+
+    <p class="post-footer">HCFA Draft 0.1 &bull; June 2026 &bull; Open specification, CC0 licence — no rights reserved.</p>
+</div>
+</body>
+</html>
